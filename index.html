@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Experimentos Sociales</title>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .experiment-sidebar {
+            scrollbar-width: thin;
+            scrollbar-color: #4f46e5 #3730a3;
+        }
+        .experiment-sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .experiment-sidebar::-webkit-scrollbar-track {
+            background: #3730a3;
+        }
+        .experiment-sidebar::-webkit-scrollbar-thumb {
+            background-color: #4f46e5;
+            border-radius: 3px;
+        }
+        .content-area {
+            scrollbar-width: thin;
+            scrollbar-color: #c7d2fe #eef2ff;
+        }
+        .content-area::-webkit-scrollbar {
+            width: 8px;
+        }
+        .content-area::-webkit-scrollbar-track {
+            background: #eef2ff;
+        }
+        .content-area::-webkit-scrollbar-thumb {
+            background-color: #c7d2fe;
+            border-radius: 4px;
+        }
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #4f46e5;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar/Navbar Izquierdo -->
+        <div class="w-80 bg-indigo-900 text-white flex flex-col experiment-sidebar">
+            <!-- Logo y Título -->
+            <div class="p-6 border-b border-indigo-700">
+                <h1 class="text-2xl font-bold flex items-center">
+                    <i class="fas fa-flask mr-3"></i>
+                    LabSocial
+                </h1>
+                <p class="text-indigo-300 text-sm mt-2">Dashboard de Experimentos</p>
+            </div>
+            
+            <!-- Menú de Experimentos -->
+            <div class="flex-1 overflow-y-auto p-4">
+                <h2 class="text-lg font-semibold mb-4 text-indigo-200">Mis Experimentos</h2>
+                <div id="experimentos-lista">
+                    <!-- Los experimentos se cargarán dinámicamente aquí -->
+                    <div class="text-center py-8">
+                        <div class="loading mx-auto mb-2"></div>
+                        <p class="text-indigo-300 text-sm">Cargando experimentos...</p>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <!-- Información del Investigador -->
+            <div class="p-4 border-t border-indigo-700">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="font-medium">tnlgo. Boris Quizhpe</p>
+                        <p class="text-sm text-indigo-300">Investigador Principal</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contenido Principal -->
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-6">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h2 id="exp-title" class="text-2xl font-bold text-gray-800">Bienvenido al Laboratorio</h2>
+                        <p id="exp-subtitle" class="text-gray-600">Selecciona un experimento para comenzar</p>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <i class="fas fa-bell text-gray-500 text-xl"></i>
+                            <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">2</span>
+                        </div>
+                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                            <i class="fas fa-cog text-indigo-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Contenido Dinámico -->
+            <main class="flex-1 overflow-y-auto p-6 content-area">
+                <div id="contenido-dinamico">
+                    <!-- Vista por defecto -->
+                    <div class="bg-white rounded-xl shadow-sm p-8 text-center">
+                        <div class="w-24 h-24 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-flask text-4xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-800 mb-4">Laboratorio de Experimentos Sociales</h3>
+                        <p class="text-gray-600 max-w-2xl mx-auto mb-8">
+                            Este dashboard esta diseñado para facilitar la gestión y visualización de mis experimentos sociales.
+                            Selecciona un experimento del menú lateral para ver sus detalles y partes componentes.
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                            <div class="bg-indigo-50 p-6 rounded-lg">
+                                <i class="fas fa-folder-open text-2xl text-indigo-600 mb-4"></i>
+                                <h4 class="font-semibold text-gray-800 mb-2">Organización por Carpetas</h4>
+                                <p class="text-gray-600 text-sm">Cada experimento se carga desde su propia carpeta</p>
+                            </div>
+                            <div class="bg-indigo-50 p-6 rounded-lg">
+                                <i class="fas fa-file-code text-2xl text-indigo-600 mb-4"></i>
+                                <h4 class="font-semibold text-gray-800 mb-2">Contenido HTML</h4>
+                                <p class="text-gray-600 text-sm">Usa archivos HTML para cada experimento</p>
+                            </div>
+                            <div class="bg-indigo-50 p-6 rounded-lg">
+                                <i class="fas fa-sync-alt text-2xl text-indigo-600 mb-4"></i>
+                                <h4 class="font-semibold text-gray-800 mb-2">Carga Dinámica</h4>
+                                <p class="text-gray-600 text-sm">El contenido se carga automáticamente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Estructura de configuración de experimentos
+        const configExperimentos = {
+            // Ruta base donde están las carpetas de experimentos
+            basePath: 'experimentos/',
+            
+            // Lista de experimentos y sus partes
+            experimentos: {
+                'solicitudes-redes-sociales': {
+                    nombre: '“¿Aceptarán o no?” — Un Experimento Social Sobre Solicitudes de Amistad en Redes Sociales',
+                    partes: {
+                        'experimento1': 'Experimento 1',
+                        'experimento2': 'Experimento 2'
+                    }
+                },
+            }
+        };
+
+        // Función para cargar la lista de experimentos en el sidebar
+        function cargarListaExperimentos() {
+            const lista = document.getElementById('experimentos-lista');
+            let html = '';
+            
+            Object.keys(configExperimentos.experimentos).forEach(expId => {
+                const experimento = configExperimentos.experimentos[expId];
+                
+                html += `
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between p-3 bg-indigo-800 rounded-lg cursor-pointer" onclick="toggleExperiment('${expId}')">
+                            <h3 class="font-medium">${experimento.nombre}</h3>
+                            <i class="fas fa-chevron-down text-indigo-300 transition-transform" id="${expId}-arrow"></i>
+                        </div>
+                        <div id="${expId}-parts" class="mt-2 ml-4 space-y-2 hidden">
+                `;
+                
+                // Agregar las partes del experimento
+                Object.keys(experimento.partes).forEach(parteId => {
+                    html += `
+                        <a href="#" class="block p-2 rounded hover:bg-indigo-700 transition part-link" 
+                           data-exp="${expId}" data-part="${parteId}">
+                            <i class="fas fa-play-circle mr-2 text-indigo-300"></i>
+                            ${experimento.partes[parteId]}
+                        </a>
+                    `;
+                });
+                
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+            
+            lista.innerHTML = html;
+            
+            // Agregar event listeners a los links
+            document.querySelectorAll('.part-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    cargarContenidoExperimental(
+                        this.getAttribute('data-exp'),
+                        this.getAttribute('data-part')
+                    );
+                });
+            });
+        }
+
+        // Función para expandir/contraer experimentos
+        function toggleExperiment(expId) {
+            const parts = document.getElementById(expId + '-parts');
+            const arrow = document.getElementById(expId + '-arrow');
+            
+            parts.classList.toggle('hidden');
+            arrow.classList.toggle('rotate-180');
+        }
+
+        // Función para cargar contenido desde archivos HTML
+        async function cargarContenidoExperimental(expId, parteId) {
+            const experimento = configExperimentos.experimentos[expId];
+            const rutaArchivo = `${configExperimentos.basePath}${expId}/${parteId}.html`;
+            
+            // Actualizar el header
+            document.getElementById('exp-title').textContent = experimento.nombre;
+            document.getElementById('exp-subtitle').textContent = experimento.partes[parteId];
+            
+            // Mostrar loading
+            document.getElementById('contenido-dinamico').innerHTML = `
+                <div class="bg-white rounded-xl shadow-sm p-8 text-center">
+                    <div class="loading mx-auto mb-4"></div>
+                    <p class="text-gray-600">Cargando contenido...</p>
+                </div>
+            `;
+            
+            // Marcar como activo en el sidebar
+            document.querySelectorAll('.part-link').forEach(l => {
+                l.classList.remove('bg-indigo-700');
+            });
+            document.querySelector(`[data-exp="${expId}"][data-part="${parteId}"]`).classList.add('bg-indigo-700');
+            
+            try {
+                const response = await fetch(rutaArchivo);
+                
+                if (!response.ok) {
+                    throw new Error(`Archivo no encontrado: ${rutaArchivo}`);
+                }
+                
+                const contenido = await response.text();
+                document.getElementById('contenido-dinamico').innerHTML = contenido;
+                
+            } catch (error) {
+                console.error('Error al cargar el contenido:', error);
+                document.getElementById('contenido-dinamico').innerHTML = `
+                    <div class="bg-white rounded-xl shadow-sm p-8 text-center">
+                        <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Error al cargar el contenido</h3>
+                        <p class="text-gray-600 mb-4">No se pudo cargar el archivo: ${rutaArchivo}</p>
+                        <p class="text-sm text-gray-500">Asegúrate de que el archivo existe en la ubicación correcta.</p>
+                        <div class="mt-6 p-4 bg-gray-50 rounded-lg text-left max-w-md mx-auto">
+                            <p class="text-sm font-mono text-gray-700">Estructura esperada:</p>
+                            <p class="text-sm font-mono text-gray-600 mt-1">
+                                experimentos/<br>
+                                &nbsp;&nbsp;${expId}/<br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;${parteId}.html
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        // Inicializar el dashboard cuando se carga la página
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarListaExperimentos();
+        });
+    </script>
+
+
+</body>
+</html>

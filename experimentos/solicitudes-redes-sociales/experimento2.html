@@ -1,0 +1,108 @@
+<div class="bg-white rounded-xl shadow-sm p-6">
+    <h3 class="text-xl font-bold text-gray-800 mb-4">Analizar si los perfiles que aceptan son realmente personas o si se
+        trata de cuentas falsas.</h3>
+
+    <div class="prose max-w-none">
+
+        <div class="bg-blue-50 p-4 rounded-lg mt-4">
+            <h4 class="font-semibold text-blue-800 mb-2">Hipótesis</h4>
+            <p class="text-blue-700 mb-4">
+            <h5 class="font-semibold text-blue-800">Autenticidad de perfiles aceptados</h5>
+            <ul class="list-disc pl-5 mb-4">
+                <li class="text-blue-700">Hipótesis nula (H0): Las cuentas que aceptan solicitudes son, en su mayoría,
+                    perfiles genuinos.</li>
+                <li class="text-blue-700">Hipótesis alternativa (H1): Una proporción considerable de los perfiles que
+                    aceptan son falsos o automatizados, lo cual sesga los resultados del experimento.</li>
+            </ul>
+
+            <p class="text-blue-700">
+                Esta hipótesis surge de la sospecha de que una aceptación rápida o poco selectiva podría provenir de
+                bots o cuentas falsas, que no representan interacciones humanas reales.
+            </p>
+        </div>
+
+        <h4 class="font-semibold text-gray-800 mt-6 mb-2">Metodología</h4>
+        <ul class="list-disc pl-5 text-gray-700 mb-4">
+            <li>Muestra: 30 solicitudes enviadas a perfiles desconocidos.</li>
+            <li>Duración de observación: 24 horas tras cada envío.</li>
+            <li>Variables observadas:
+
+                <ul class="list-disc pl-5">
+                    <li>Aceptada ✅</li>
+                    <li>Rechazada ❌</li>
+                    <li>Ignorada ⏳</li>
+                    <li>Bloqueada 🚫</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4 class="font-semibold text-gray-800 mt-6 mb-2">Resultados</h4>
+        <table class="table-auto w-full border-collapse border border-gray-300 mb-4">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2">Respuesta</th>
+                    <th class="border px-4 py-2">Frecuencia</th>
+                    <th class="border px-4 py-2">Porcentaje</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">Aceptada</td>
+                    <td class="border px-4 py-2">5</td>
+                    <td class="border px-4 py-2">16.7%</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Bloqueada</td>
+                    <td class="border px-4 py-2">2</td>
+                    <td class="border px-4 py-2">6.7%</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Ignorada</td>
+                    <td class="border px-4 py-2">23</td>
+                    <td class="border px-4 py-2">76.7%</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Total</td>
+                    <td class="border px-4 py-2">30</td>
+                    <td class="border px-4 py-2">100%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p class="text-gray-700 mb-4">
+
+            Se observó que las 5 cuentas que aceptaron lo hicieron de manera rápida y sin aparente criterio de
+            selección. Esto abre la posibilidad de que:
+
+        <ul class="list-disc pl-5">
+            <li>Algunas cuentas sean perfiles falsos diseñados para inflar estadísticas, difundir spam o atraer
+                seguidores.</li>
+            <li>Otras cuentas podrían ser gestionadas por personas reales pero con un comportamiento automatizado.</li>
+            <li>La tasa de aceptación real de mujeres genuinas sea más baja de lo que reflejan los datos brutos.</li>
+        </ul>
+</p>
+<p class="text-gray-700 mb-4">
+    Resultados adicionales:
+
+        <ul class="list-disc pl-5">
+            <li>2 perfiles mostraron señales de ser falsos (pocas publicaciones, fotos genéricas, actividad mínima).</li>
+            <li>Si se descuentan como “falsos”, la tasa de aceptación “real” bajaría a 10% (3 de 30), coincidiendo con la hipótesis inicial.</li>
+        </ul>
+</p>
+        
+        
+
+
+        <h4 class="font-semibold text-gray-800 mt-6 mb-2">Discusión</h4>
+        <p class="text-gray-700 mb-4">
+            plantea un sesgo importante: la existencia de perfiles falsos. Al descontarlos, la proporción se acerca mucho más al esperado 10%.
+        </p>
+
+        <h4 class="font-semibold text-gray-800 mt-6 mb-2">Conclusiones</h4>
+        <ul class="list-disc pl-5 text-gray-700 mb-4">
+            <li>La presencia de cuentas falsas es un factor crítico que distorsiona los resultados en redes sociales.</li>
+            <li>El rechazo explícito (bloqueo) es bajo, pero constante (~7%).</li>
+            <li>Se recomienda replicar el estudio con una muestra mayor (≥100 solicitudes) y controles adicionales para validar la autenticidad de perfiles.</li>
+        </ul>
+    </div>
+</div>
